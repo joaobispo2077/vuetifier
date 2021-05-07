@@ -1,0 +1,28 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<div id="app">
+  <h1>Contador</h1>
+  <p>{{counter}}</p>
+  <button @click="incrementCounter">Incrementar</button>
+  <p @mousemove="updateXandY">Mouse: {{x}} e {{y}}</p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      counter: 0,
+      x: 0,
+      y: 0,
+    },
+    methods: {
+      incrementCounter() {
+        this.counter++;
+      },
+      updateXandY(event) {
+        this.x = event.clientX;
+        this.y = event.clientY;
+        console.log(event);
+      }
+    }
+  });
+</script>
