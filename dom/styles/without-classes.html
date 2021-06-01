@@ -1,0 +1,58 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<style>
+  #app .boxes {
+    display: flex;
+    justify-content: space-around;
+
+  }
+
+
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .bg-red {
+    background-color: red;
+  }
+
+  .bg-green {
+    background-color: green;
+  }
+
+  .bg-blue {
+    background-color: blue;
+  }
+</style>
+<div id="app">
+  <div class="boxes">
+    <div class="demo" :style="{backgroundColor: color}"></div>
+    <div class="demo"></div>
+    <div class="" :style="customStyle"></div>
+  </div>
+  <hr />
+  <input type="text" v-model="color">
+  <input type="text" v-model="height">
+  <input type="text" v-model="width">
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      color: 'red',
+      height: 100,
+      width: 100,
+    },
+    computed: {
+      customStyle() {
+        return {
+          height: this.height + 'px',
+          width: this.width + 'px',
+          backgroundColor: this.color
+        }
+      }
+    }
+  });
+</script>
