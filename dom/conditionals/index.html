@@ -1,0 +1,23 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <p v-if="isLogged">Usuário Logado: {{ name }}</p>
+  <P v-else>Nenhum usuário logado</P>
+  <button @click="isLogged = !isLogged">{{ buttonLoginText }}</button>
+</div>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      name: 'Goku',
+      isLogged: true
+    },
+    computed: {
+      buttonLoginText() {
+        return this.isLogged ? 'Sair' : 'Entrar';
+      }
+    }
+  })
+</script>

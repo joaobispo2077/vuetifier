@@ -1,0 +1,33 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+
+  <template v-if="isLogged">
+    <!-- Generate two elements into raw HTML, without create a 'div' to include elements. -->
+    <p>Usuário Logado: {{ name }}</p>
+    <p>Perfil: Admin</p>
+  </template>
+
+  <P v-else-if="anonymous">Usuário anônimo</P>
+  <P v-else>Nenhum usuário logado</P>
+  <button @click="isLogged = !isLogged">{{ buttonLoginText }}</button>
+  <input type="checkbox" @click="anonymous = !anonymous" name="anonymous" id="anonymous">
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      name: 'Goku',
+      isLogged: false,
+      anonymous: false
+    },
+    computed: {
+      buttonLoginText() {
+        return this.isLogged ? 'Sair' : 'Entrar';
+      }
+    }
+  })
+</script>
