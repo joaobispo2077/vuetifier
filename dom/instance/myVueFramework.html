@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{nome}}
+  </div>
+
+  <script>
+    function MyVue(params) {
+      this.$el = document.querySelector(params.el);
+      this.$data = params.data;
+
+      for (let atr in this.$data) {
+        Object.defineProperty(this, atr, {
+          get: () => {
+            return this.$data[atr];
+          },
+          set: value => {
+            console.log(value);
+            this.$data[atr] = value;
+          }
+        })
+      }
+      const regex = /\{\{([\s\w)(,.+*-]*)\}\}/g;
+      this.$el.innerHTML = this.$el.innerHTML.replace(regex, (match, $l) => {
+        const value = this[$l.trim()];
+        return value ? value : eval($l);
+      });
+    }
+
+    const vm = new MyVue({
+      el: '#app',
+      data: {
+        nome: 'testing'
+      }
+    });
+
+    console.log(vm.nome);
+    vm.nome = 'kaboom'
+  </script>
+</body>
+
+</html>

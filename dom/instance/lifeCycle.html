@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{title}}</p>
+    <button @click="title += '#'">Alterar título</button>
+    <button @click="$destroy()">Destruir</button>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: { title: 'Vue Life Cycle' },
+      beforeCreate() {
+        console.log("Antes de criar a instancia");
+      },
+      created() {
+        console.log("criado");
+      },
+      beforeMount() {
+        console.log('Antes de montar a DOM');
+      },
+      mounted() {
+        console.log('DOM montada');
+      },
+      updated() {
+        console.log('Atualizado');
+      },
+      beforeDestroy() {
+        console.log('Antes de destruir');
+      },
+      destroyed() {
+        console.log('Destruido');
+      }
+
+    })
+  </script>
+</body>
+
+</html>
