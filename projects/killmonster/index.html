@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KillMonster</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+    <section class="panel scores">
+      <div class="score">
+        <h2>Jogador</h2>
+        <!-- <progress :value="playerLife" max="100">{{playerLife}} %</progress> -->
+        <div class="life-bar">
+          <div class="life" :class="{danger: playerLife < 20}" :style="{width: playerLife + '%'}">
+          </div>
+        </div>
+        {{playerLife + '%'}}
+      </div>
+      <div class="score">
+        <h2>Monstro</h2>
+        <!-- <progress :value="20" max="100">{{monsterLife}} %</progress> -->
+        <div class="life-bar">
+          <div class="life" :class="{danger: monsterLife < 20}" :style="{width: monsterLife + '%'}"></div>
+        </div>
+        {{monsterLife + '%'}}
+      </div>
+    </section>
+    <section class="panel result" v-if="hasResult">
+      <!-- <div v-if="monsterLife === 0 && playerLife === 0">EMPATOOOOOOOOU ⏳!</div> -->
+      <div v-if="monsterLife === 0" class="win">Você ganhou!!! Boa 🔥</div>
+      <div v-else class="lose">Você perdeu 😭, tente mais uma vez!</div>
+    </section>
+    <section class="panel buttons">
+      <template v-if="running">
+        <button class="btn attack" @click="attack(false)">Ataque</button>
+        <button class="btn special-attack" @click="attack(true)">Ataque Especial</button>
+        <button class="btn heal" @click="healAndHurt">Curar</button>
+        <button class="btn give-up" @click="giveUpGame">Desistir</button>
+      </template>
+      <template v-else>
+        <button class="btn new-game" @click="startGame">Iniciar Jogo</button>
+      </template>
+    </section>
+    <section v-if="logs.length" class="panel logs">
+      <ul>
+        <li v-for="log in logs" class="log" :class="log.css">{{log.text}}</li>
+      </ul>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
