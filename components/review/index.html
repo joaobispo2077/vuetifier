@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components</title>
+  <script src="https://unpkg.com/vue"></script>
+  <style>
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <Counter></Counter>
+    <counter></counter>
+    <COUNTER></COUNTER>
+  </div>
+
+  <script>
+    // Registro global de componente
+    Vue.component('counter', {
+      template: `
+      <div>
+        <h1>{{counter}}</h1>
+        <button @click="counter++">+</button>
+        <button @click="counter--">-</button>
+      </div>
+      `,
+      data: () => ({
+        counter: 0
+      })
+    });
+    new Vue({
+      el: '#app',
+    });
+  </script>
+</body>
+
+</html>
