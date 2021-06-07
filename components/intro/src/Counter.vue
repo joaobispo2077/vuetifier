@@ -24,13 +24,13 @@ export default {
 </script>
 
 <style scoped>
-.counter span {
+ span {
     border-bottom: 1px solid blue;
     height: 30px;
     padding: 5px 25px;
 }
 
-.counter button {
+ button {
   height: 30px;
   width: 30px;
   border-radius: 15px;

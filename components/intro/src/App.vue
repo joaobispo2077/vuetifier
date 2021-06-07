@@ -1,5 +1,9 @@
 <template>
+<div>
   <Counters />
+  <button>?</button>
+
+</div>
 </template>
 
 <script>
