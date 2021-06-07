@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
 .counter span {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid blue;
     height: 30px;
     padding: 5px 25px;
 }
@@ -34,7 +34,7 @@ export default {
   height: 30px;
   width: 30px;
   border-radius: 15px;
-  background-color: chocolate;
+  background-color: mediumslateblue;
   color: #fff;
   margin-left: 10px;
   outline: none;

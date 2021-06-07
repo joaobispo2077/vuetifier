@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Counter from './Counter.vue';
+import Counters from './Counters.vue';
 
 Vue.config.productionTip = false
 
-Vue.component('Counter', Counter);
+Vue.component('Counters', Counters);
 
 new Vue({
   render: h => h(App),
