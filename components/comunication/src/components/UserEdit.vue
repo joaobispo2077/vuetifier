@@ -8,12 +8,13 @@
 </template>
 
 <script>
+import eventBus from "@/eventBus";
+
 export default {
     props: ['age'],
     methods: {
         addedAt() {
-            let cloneAge = String(this.age);
-            this.$emit('addedAt', cloneAge += '@' );
+            eventBus.$emit('addedAt', this.age += '@' );
         }
     }
 }

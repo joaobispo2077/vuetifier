@@ -14,8 +14,7 @@
                 :changeName="changeName"
             />
             <UserEdit 
-                :age="age" 
-                @addedAt="age = $event"
+                :age="age"
             />
         </div>
     </div>

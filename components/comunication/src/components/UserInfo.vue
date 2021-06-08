@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import eventBus from "@/eventBus";
+
 export default {
     props: {
         name: {
@@ -33,6 +35,11 @@ export default {
                 newer: this.name
             });
         }
+    },
+    created() {
+        eventBus.$on('addedAt', age => {
+            this.age = age;
+        });
     }
 }
 </script>
