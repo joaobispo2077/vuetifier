@@ -2,11 +2,21 @@
     <div class="container">
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
+        <p>Meu nome é {{name}}</p>
+        <p>idade é {{age}}</p>
         <button @click="changeName">Mudar nome</button>
         <hr>
         <div class="boxes">
-            <UserInfo :name="name" />
-            <UserEdit />
+            <UserInfo 
+                :name="name"  
+                :age="age"
+                @changedName="name = $event"
+                :changeName="changeName"
+            />
+            <UserEdit 
+                :age="age" 
+                @addedAt="age = $event"
+            />
         </div>
     </div>
 </template>
@@ -18,7 +28,8 @@ import UserEdit from './UserEdit'
 export default {
     components: { UserInfo, UserEdit },
     data: () => ({
-        name: 'Goku'
+        name: 'Goku',
+        age: 21
     }),
     methods: {
         changeName() {
