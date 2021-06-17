@@ -37,7 +37,7 @@ export default {
         }
     },
     created() {
-        eventBus.$on('addedAt', age => {
+        eventBus.onChangeAge(age => {
             this.age = age;
         });
     }

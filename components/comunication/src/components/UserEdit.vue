@@ -14,7 +14,7 @@ export default {
     props: ['age'],
     methods: {
         addedAt() {
-            eventBus.$emit('addedAt', this.age += '@' );
+            eventBus.changeAge(this.age += '@');
         }
     }
 }
