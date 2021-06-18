@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<UserList @selectUser="selectedUser = $event" :users="users" />
+		<UserList @selectUser="selectedUser = $event" :users="[users]" />
 		<UserDetail :user="selectedUser"/>
 	</div>
 </template>
