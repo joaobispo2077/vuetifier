@@ -52,4 +52,8 @@ export default {
         flex-direction: column;
         align-items: center;
     }
+
+    h1 {
+        color: #eaff;
+    }
 </style>
