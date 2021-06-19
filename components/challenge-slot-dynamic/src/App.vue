@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<span>
-			<button @click="setComponent('Vermelho')" class="vermelho">Carregar Componente Vermelho</button>
-			<button @click="setComponent('Verde')" class="verde">Carregar Componente Verde</button>
-			<button @click="setComponent('Azul')" class="azul">Carregar Componente Azul</button>
+			<button @click="setComponent('Red')" class="red">Carregar Componente Red</button>
+			<button @click="setComponent('Green')" class="green">Carregar Componente Green</button>
+			<button @click="setComponent('Blue')" class="blue">Carregar Componente Blue</button>
 		</span>
 		
 		<component :is="component">
@@ -14,15 +14,15 @@
 </template>
 
 <script>
-import Vermelho from './components/Vermelho.vue'
-import Verde from './components/Verde.vue'
-import Azul from './components/Azul.vue'
+import Red from './components/Red.vue'
+import Green from './components/Green.vue'
+import Blue from './components/Blue.vue'
 
 export default {
 	name: 'app',
-	components: { Vermelho, Verde, Azul },
+	components: { Red, Green, Blue },
 	data: () => ({
-		component: 'Vermelho',
+		component: 'Red',
 	}),
 	methods: {
 		setComponent(component) {
@@ -48,24 +48,24 @@ export default {
 		font-size: 1.3rem;
 	}
 
-    .caixa {
+    .box {
         color: #FFF;
         font-size: 1.8rem;
         padding: 25px;
 		margin: 10px 0px;
     }
 
-	.vermelho {
+	.red {
         border: 2px solid red;
         background-color: #f54235;
     }
 
-	.verde {
+	.green {
         border: 2px solid green;
         background-color: #49b057;
     }
 
-	.azul {
+	.blue {
         border: 2px solid blue;
         background-color: #2594f0;
     }
