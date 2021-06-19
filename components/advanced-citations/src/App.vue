@@ -1,6 +1,8 @@
 <template>
 	<div id="app">
-		<component :is="component" />
+		<keep-alive>
+			<component :is="component" />
+		</keep-alive>
 		<button @click="citation = !citation">{{citation ? 'Close' : 'Show'}} citations</button>
 	</div>
 </template>

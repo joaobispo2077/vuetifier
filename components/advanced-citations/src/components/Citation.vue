@@ -9,7 +9,12 @@
 
 <script>
 export default {
-    
+    activated() {
+        alert('citation was activated');
+    },
+    deactivated() {
+        alert('citation was deactivated');
+    }
 }
 </script>
 
