@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<Citations />
-		<About />
+		<component :is="component" />
+		<button @click="citation = !citation">{{citation ? 'Close' : 'Show'}} citations</button>
 	</div>
 </template>
 
@@ -10,7 +10,15 @@ import Citations from './components/Citations'
 import About from './components/About'
 
 export default {
-	components: { Citations, About }
+	components: { Citations, About },
+	data: () => ({
+		citation: false,
+	}),
+	computed: {
+		component() {
+			return this.citation ? 'Citations' : 'About';
+		}
+	}
 }
 </script>
 
