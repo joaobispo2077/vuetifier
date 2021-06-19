@@ -1,17 +1,17 @@
 <template>
-    <div class="citacao">
-        
+    <div class="citation">
+        <slot></slot>
     </div>
 </template>
 
 <script>
 export default {
-
+    
 }
 </script>
 
 <style scoped>
-    .citacao {
+    .citation {
         border: 1px solid #DDD;
         background-color: rgba(0, 0, 0, .1);
         padding: 25px;

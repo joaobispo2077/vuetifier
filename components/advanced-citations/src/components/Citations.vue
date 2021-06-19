@@ -1,15 +1,25 @@
 <template>
-    <div class="citacoes">
+    <div class="citations">
         <span>
             <button @click="number--">&lt;</button>
             <button @click="number++">&gt;</button>
         </span>
+        <Citation>
+            <h1>{{citations[index].author}}</h1>
+            <p>{{citations[index].text}}</p>
+            <h6>{{citations[index].font}}</h6>
+        </Citation>
+        
+        <hr />
         {{ number }} {{ index }}
     </div>
 </template>
 
 <script>
+import Citation from "./Citation.vue";
+
 export default {
+    components: {Citation},
     data() {
         return {
             number: 0,
@@ -29,7 +39,7 @@ export default {
         }
     },
     computed: {
-        indice() {
+        index() {
             return Math.abs(this.number % 3)
         }
     }
@@ -37,7 +47,7 @@ export default {
 </script>
 
 <style scoped>
-    .citacoes {
+    .citations {
         display: flex;
         flex-direction: column;
         align-items: center;
