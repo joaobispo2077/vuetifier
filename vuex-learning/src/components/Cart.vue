@@ -34,7 +34,7 @@ export default {
             total: 'getTotal',
         }),
         products() {
-            return  this.$store.state.products;
+            return  this.$store.state.Cart.products;
         }
     },
 }
