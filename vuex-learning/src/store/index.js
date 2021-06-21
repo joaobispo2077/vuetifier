@@ -10,5 +10,16 @@ export default new Vuex.Store({
       { id: 2, name: 'Produto 2', quantity: 10, price: 22.99 },
       { id: 3, name: 'Produto 3', quantity: 1, price: 43.18 },
     ]
+  },
+  getters: {
+    total(state) {
+      return state.products.map(p => p.quantity * p.price)
+        .reduce((total, atual) => total + atual, 0);
+    }
+  },
+  mutations: {
+    addProduct(state, payload) {
+      state.products.push(payload);
+    }
   }
 });

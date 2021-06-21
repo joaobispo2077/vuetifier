@@ -29,8 +29,7 @@
 export default {
     computed: {
         total() {
-            return this.products.map(p => p.quantity * p.price)
-                .reduce((total, atual) => total + atual, 0)
+            return this.$store.getters.total;
         },
         products() {
             return  this.$store.state.products;
