@@ -12,6 +12,9 @@
 
 <script>
 
+import { mapMutations } from 'vuex';
+
+
 export default {
     data() {
         return {
@@ -21,6 +24,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['addProduct']),
         adicionar() {
             const product = {
                 id: this.sequence,
@@ -32,7 +36,7 @@ export default {
             // eslint-disable-next-line
             console.log(product)
 
-            this.$store.state.products.push(product);
+            this.addProduct(product);
         }
     }
 }

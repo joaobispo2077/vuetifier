@@ -14,11 +14,8 @@ import { mapGetters } from 'vuex';
 export default {
     computed: {
         ...mapGetters({
-            total: ({total}) => total,
+            total: 'getTotal',
         }),
-        total() {
-            return this.$store.getters.total;
-        },
     },
 
 }
