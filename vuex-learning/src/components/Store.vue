@@ -12,19 +12,23 @@
 
 <script>
 
-import { mapMutations } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 
 export default {
     data() {
         return {
             sequence: 1,
-            quantity: 1,
-            price: 9.99,
         }
     },
+    computed: {
+        ...mapGetters({
+            quantity: 'defaultQuantity',
+            price: 'defaultPrice'
+        })
+    },
     methods: {
-        ...mapMutations(['addProduct']),
+        ...mapActions(['addProduct']),
         adicionar() {
             const product = {
                 id: this.sequence,
@@ -35,7 +39,12 @@ export default {
             this.sequence++
             // eslint-disable-next-line
             console.log(product)
+            // Com mutations
+            // this.$store.state.products.push(product);
+            // this.$store.commit('addProduct', product);
 
+            // Com actions
+            // this.$store.dispatch('addProduct', product)
             this.addProduct(product);
         }
     }

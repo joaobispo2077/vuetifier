@@ -14,13 +14,39 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
-    data() {
-        return {
-            quantity: 0,
-            price: 0
+    computed:  {
+        ...mapGetters([
+             'defaultQuantity', 
+             'defaultPrice'
+        ]),
+        quantity: {         
+            get() {
+                return this.defaultQuantity;
+            },
+            set(value) {
+                this.changeDefaultQuantity(value)
+            }
+        }, 
+        price: {
+            get() {
+                return this.defaultPrice;
+            },
+            set(value) {
+                this.changeDefaultPrice(value)
+            }
         }
+    },
+    methods: {
+        ...mapActions([
+            'changeDefaultQuantity',
+            'changeDefaultPrice',
+        ])
     }
+
+
 }
 </script>
 
