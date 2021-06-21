@@ -28,7 +28,7 @@ export default {
         })
     },
     methods: {
-        ...mapActions(['addProduct']),
+        ...mapActions('Cart',['addProduct']),
         adicionar() {
             const product = {
                 id: this.sequence,
