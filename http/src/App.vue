@@ -24,10 +24,12 @@
 		</b-card>
 		<hr>
 		<b-list-group>
-			<b-list-group-item v-for="(user, id) in users" :key='id'>
+			<b-list-group-item  v-for="(user, id) in users" :key='id' :variant='selectedId === id ? "warning" : ""'>
 				<strong>Nome: {{user.name }}</strong> <br/>
 				<strong>E-mail: {{user.email }}</strong>  <br/>
-				<strong>ID: {{ id }}</strong>
+				<strong>ID: {{ id }}</strong> <br/>
+				<b-button @click="loadUser(id)" variant="warning" size="lg" >Carregar</b-button>
+				<b-button @click="removeUser(id)" variant="danger" size="lg" class="ml-2">Excluir</b-button>
 			</b-list-group-item>
 		</b-list-group>
 	</div>
@@ -37,23 +39,37 @@
 export default {
 	data: () => ({
 		users: [],
+		selectedId: null,
 		user: {
 			name: '',
 			email: ''
 		}
 	}),
 	methods: {
-		submit() {
-			this.$http.post('users.json', this.user).then(response => {
+		cleanUp() {
 				this.user.name ='';
 				this.user.email ='';
-			})
+				this.id = null;
+		},
+		loadUser(id) {
+			if(this.selectedId === id) {
+				this.id = null;
+			} else {
+				this.selectedId =	id;
+				this.user = {...this.users[id]};
+			}
+		},
+		submit() {
+			this.$http.post('users.json', this.user).then(() => this.cleanUp());
 		},
 		getUsers() {
 			this.$http.get('users.json').then(response => {
 				this.users = response.data;
 				console.log(this.users);
 			})
+		},
+		removeUser(id) {
+			this.$http.delete(`/users/${id}.json`).then(() => this.cleanUp());
 		}
 	}
 	// created() {
