@@ -18,8 +18,21 @@ Vue.use({
 
       console.log('config', config)
       return config;
-    })
+    }, error => Promise.reject(error));
 
+    api.interceptors.response.use(response => {
+      // const normalizedUsers = Object.entries(response.data)
+      //   .map(([key, value]) => ({
+      //     id: key,
+      //     name: value.name,
+      //     email: value.email
+      //   }));
+
+      // console.log('normalizedUsers', normalizedUsers);
+
+      // response.data = normalizedUsers;
+      return response;
+    }, error => Promise.reject(error))
     Vue.prototype.$http = api;
   }
 })
