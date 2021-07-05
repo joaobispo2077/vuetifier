@@ -22,17 +22,24 @@
 					<span><input v-model="features" type="checkbox" value="intermitente"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span class="mr-4"><input type="radio"> Web</span>
-					<span class="mr-4"><input type="radio"> Mobile</span>
-					<span><input type="radio"> Outro</span>
+					<span class="mr-4"><input v-model="product" type="radio" value="web"> Web</span>
+					<span class="mr-4"><input v-model="product" type="radio" value="mobile"> Mobile</span>
+					<span><input v-model="product" type="radio" value="outro"> Outro</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<select name="" id="">
-						<option></option>
+					<select v-model="selectedPriority">
+						<option 
+							v-for="priority in priorities" 
+							:selected="priority.code === 1" 
+							:value="priority.code" 
+							:key="priority.code"
+						>
+						{{priority.code}}	- {{priority.name}}
+						</option>
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<Toggle />
+					<Toggle v-model="firstProblem"/>
 				</Rotulo>
 				<hr>
 				<button>Enviar</button>
@@ -59,13 +66,13 @@
 					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
-					<span>???</span>
+					<span>{{product}}</span>
 				</Rotulo>
 				<Rotulo nome="Prioridade">
-					<span>???</span>
+					<span>{{selectedPriority}}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{firstProblem}}</span>
 				</Rotulo>
 			</div>
 		</div>
@@ -86,7 +93,24 @@ export default {
 			age: 25
 		},
 		message: '',
-		features: []
+		features: [],
+		product: 'web',
+		selectedPriority: 1,
+		firstProblem: true,
+		priorities: [
+			{
+				code: 1, 
+				name: 'low'
+			},
+			{
+				code: 2, 
+				name: 'moderate'
+			},
+			{
+				code: 3, 
+				name: 'high'
+			},
+		]
 	})
 }
 </script>

@@ -1,19 +1,20 @@
 <template>
     <div class="toggle"
-        @click="on = !on"
-        :class="{on, off: !on}">
-        <div v-if="on" class="button"></div>
+        @click="$emit('input', !value)"
+        :class="{on: value, off: !value}">
+        <div v-if="value" class="button"></div>
         <div v-else class="button"></div>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            on: false
+    props: {
+        value: {
+            type: Boolean,
+            required: true
         }
-    }
+    },
 }
 </script>
 
