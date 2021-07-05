@@ -3,11 +3,20 @@ import axios from 'axios';
 
 // axios.defaults.baseURL = process.env.VUE_APP_FIREBASE_URL;
 
+// axios.defaults.headers.common['Authorization'] = 'fake-token';
+// axios.defaults.headers.get['Accep'] = 'application/json';
+
 Vue.use({
   install(Vue) {
     // Vue.prototype.$http = axios;
     const api = axios.create({
-      baseURL: process.env.VUE_APP_FIREBASE_URL
+      baseURL: process.env.VUE_APP_FIREBASE_URL,
+      headers: {
+        'Authorization': 'fake-common-token', // token that will work in every request
+        get: { // token that works only i get request
+          'Authorization': 'fake-get-token'
+        }
+      }
     });
 
     api.interceptors.request.use(async config => {
