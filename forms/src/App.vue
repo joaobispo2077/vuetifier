@@ -5,20 +5,21 @@
 			<form class="painel">
 				<div class="cabecalho">Formulário</div>
 				<Rotulo nome="E-mail">
-					<input type="text" v-model="email">
+					<input type="text" v-model.lazy.trim="user.email">
 				</Rotulo>
 				<Rotulo nome="Senha">
-					<input type="password">
+					<input type="password" v-model="user.password">
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<input type="number">
+					<input type="number" v-model.number="user.age">
 				</Rotulo>
 				<Rotulo nome="Mensagem">
-					<textarea name="" cols="30" rows="5"></textarea>
+					<textarea name="" cols="30" rows="5" v-model="message"></textarea>
 				</Rotulo>
 				<Rotulo nome="Características do Problema">
-					<span class="mr-4"><input type="checkbox" value="reproduzivel"> Reproduzível</span>
-					<span><input type="checkbox" value="intermitente"> Intermitente</span>
+					<span class="mr-4">
+						<input v-model="features" type="checkbox" value="reproduzivel"> Reproduzível</span>
+					<span><input v-model="features" type="checkbox" value="intermitente"> Intermitente</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
 					<span class="mr-4"><input type="radio"> Web</span>
@@ -39,19 +40,23 @@
 			<div class="painel">
 				<div class="cabecalho">Resultado</div>
 				<Rotulo nome="E-mail">
-					<span>{{email}}</span>
+					<span>{{user.email}}</span>
 				</Rotulo>
 				<Rotulo nome="Senha">
-					<span>???</span>
+					<span>{{ user.password }}</span>
 				</Rotulo>
 				<Rotulo nome="Idade">
-					<span>???</span>
+					<span>{{ user.age }}</span>
 				</Rotulo>
 				<Rotulo nome="Mensagem">
-					<span>???</span>
+					<span style="white-space: pre;">{{message}}</span>
 				</Rotulo>
-				<Rotulo nome="Marque as Opções">
-					<span>???</span>
+				<Rotulo nome="Características do problema">
+					<span>
+						<ul>
+							<li v-for="feature in features" :key="feature">{{feature}}</li>
+						</ul>
+					</span>
 				</Rotulo>
 				<Rotulo nome="Qual produto?">
 					<span>???</span>
@@ -75,7 +80,13 @@ export default {
 	name: 'app',
 	components: { Rotulo, Toggle },
 	data: () => ({
-		email: ''
+		user: {
+			email: '',
+			password: '',
+			age: 25
+		},
+		message: '',
+		features: []
 	})
 }
 </script>
