@@ -25,7 +25,6 @@ Vue.use({
         setTimeout(() => resolve(true), 2500);
       });
 
-      console.log('config', config)
       return config;
     }, error => Promise.reject(error));
 

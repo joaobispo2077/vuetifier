@@ -19,7 +19,7 @@
 				/>
 			</b-form-group>
 			<hr>
-			<b-button @click="submit" size="lg" variant="primary">Salvar</b-button>
+			<b-button @click="createUser" size="lg" variant="primary">Salvar</b-button>
 			<b-button class="ml-2" @click="getUsers" size="lg" variant="success">Listar usuários</b-button>
 		</b-card>
 		<hr>
@@ -53,19 +53,22 @@ export default {
 		},
 		loadUser(id) {
 			if(this.selectedId === id) {
-				this.id = null;
+				this.selectedId = null;
 			} else {
 				this.selectedId =	id;
 				this.user = {...this.users[id]};
 			}
 		},
-		submit() {
-			this.$http.post('users.json', this.user).then(() => this.cleanUp());
+		createUser() {
+			if(this.selectedId) {
+				this.$http.patch(`/users/${this.selectedId}.json`, this.user).then(() => this.cleanUp());
+			} else {
+				this.$http.post('users.json', this.user).then(() => this.cleanUp());
+			}
 		},
 		getUsers() {
 			this.$http.get('users.json').then(response => {
 				this.users = response.data;
-				console.log(this.users);
 			})
 		},
 		removeUser(id) {
