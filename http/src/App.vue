@@ -1,6 +1,14 @@
 <template>
 	<div id="app" class="container">
 		<h1>HTTP com Axios</h1>
+		<b-alert
+			show dismissible 
+			v-for="message in messages"
+			:key="message.text"
+			:variant="message.type"		
+		>
+		{{ message.text }}
+		</b-alert>
 		<b-card>
 			<b-form-group label="Nome:">
 				<b-form-input
@@ -38,6 +46,7 @@
 <script>
 export default {
 	data: () => ({
+		messages: [],
 		users: [],
 		selectedId: null,
 		user: {
@@ -50,6 +59,7 @@ export default {
 				this.user.name ='';
 				this.user.email ='';
 				this.id = null;
+				this.messages = [];
 		},
 		loadUser(id) {
 			if(this.selectedId === id) {
@@ -63,7 +73,10 @@ export default {
 			if(this.selectedId) {
 				this.$http.patch(`/users/${this.selectedId}.json`, this.user).then(() => this.cleanUp());
 			} else {
-				this.$http.post('users.json', this.user).then(() => this.cleanUp());
+				this.$http.post('users.json', this.user).then(() =>{
+					this.cleanUp()
+					this.messages.push({ text: 'Usuário criado com sucesso', type: 'success'})
+				});
 			}
 		},
 		getUsers() {
@@ -72,7 +85,10 @@ export default {
 			})
 		},
 		removeUser(id) {
-			this.$http.delete(`/users/${id}.json`).then(() => this.cleanUp());
+			this.$http.delete(`/users/${id}.json`).then(() => this.cleanUp()).catch(() => {
+				this.cleanUp();
+				this.messages.push({ text: 'Não foi possível excluir.', type: 'danger'})
+			});
 		}
 	}
 	// created() {
